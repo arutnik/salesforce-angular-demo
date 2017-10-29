@@ -4,6 +4,7 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
+    "sf": "concurrently --kill-others \"ng build --watch\" \"gulp\"",
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
@@ -44,6 +45,10 @@
     "protractor": "~5.1.2",
     "ts-node": "~3.0.4",
     "tslint": "~5.3.2",
-    "typescript": "~2.3.3"
+    "typescript": "~2.3.3",
+    "gulp": "^3.9.1",
+    "gulp-batch": "^1.0.5",
+    "gulp-run": "^1.7.1",
+    "gulp-watch": "^4.3.11"
   }
 }

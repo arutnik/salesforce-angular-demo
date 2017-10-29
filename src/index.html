@@ -1,14 +1,43 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8"></meta>
   <title>SalesforceAngularDemo</title>
-  <base href="/">
+  <base href="/"></base>
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+  <link rel="icon" type="image/x-icon" href="favicon.ico"></link>
 </head>
 <body>
+  
   <app-root></app-root>
+  <script>
+    g_sf_api_wrapper = null;
+    if (typeof $SFCONTROLLER !== 'undefined') {
+      g_sf_api_wrapper = $SFCONTROLLER;
+    }
+    g_sf_page_root = '';
+    if (typeof $SFPAGEROOT !== 'undefined') {
+      g_sf_page_root = $SFPAGEROOT;
+    }
+    g_sf_static_root = "{!URLFOR($Resource.#RESOURCES#, 'favicon.ico')}"
+    if (!(g_sf_static_root[0] === "{")) { //in local mode this will not have been replaced
+      g_sf_static_root = g_sf_static_root.substr(0, g_sf_static_root.lastIndexOf('/')) + '/';
+    } else {
+      g_sf_static_root = "";
+    }
+    
+    function getSfStaticResourceRoot() {
+        return g_sf_static_root;
+    }
+
+    function getSfPageRoot() {
+      return g_sf_page_root;
+    }
+
+    function getSfApiWrapper() {
+      return g_sf_api_wrapper;
+    }
+</script>
 </body>
 </html>

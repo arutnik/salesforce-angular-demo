@@ -1,0 +1,30 @@
+
+<project name="Standard Salesforce Build File" default="validate" basedir="." xmlns:sf="antlib:com.salesforce">
+	<property name="workingDir" location="." />
+	<property name="logFile" value="log/ant.log" />
+
+	<taskdef uri="antlib:com.salesforce"
+        resource="com/salesforce/antlib.xml"
+        classpath="${basedir}/lib/ant-salesforce.jar"/>
+
+	<target name="intro" >
+        <echo message="  Salesforce Deploy Script" />
+		<echo message="  Directory:  ${workingDir}" />
+	</target>
+	
+	<target name="localDevDeploy" depends="intro">
+		<property file="dev.sf" />
+		<sf:deploy 
+				username="${sf.username}" 
+				password="${sf.password}${sf.token}" 
+				serverurl="${sf.url}"
+				deployRoot="src-dev-deploy"
+				checkOnly="false"
+				maxPoll="200"
+				pollWaitMillis="10000"
+				testLevel="NoTestRun"
+				rollbackOnError="true"
+			/>
+	</target>
+	
+</project>

@@ -1,28 +1,38 @@
-# SalesforceAngularDemo
+# Salesforce + Angular 4 #
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.2.6.
+This repo contains a demonstration of loading an Angular 4 app inside a Visualforce page, including support for static assets, Apex controller access and router deep links.
 
-## Development server
+## Salesforce Org Set up ##
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Inside your Salesforce org add an Apex class named sftestcontroller:
 
-## Code scaffolding
+'''
+public class sftestcontroller {
+    
+    @RemoteAction
+    public static string helloAngular(string name) {
+      return 'User ' + UserInfo.getUserId() + ' says hello ' + name;
+    }
+}
+'''
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|module`.
+In this project under /salesforce add a file called 'dev.sf'
 
-## Build
+'''
+sf.username = YOUR user name
+sf.password = YOUR password
+sf.token = YOUR security token
+sf.url = https://login.salesforce.com
+'''
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+Check your org to make sure that login URL is right.
 
-## Running unit tests
+## Install and run ##
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+'''
+npm install -g concurrently
+npm install
+npm run sf
+'''
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+This will cause your project to build and deploy to Salesforce, with any changes being automatically built and deployed. Your Angular app will be available at [YOUR_ORG_URL]/apex/sftestpage

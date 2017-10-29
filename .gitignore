@@ -1,5 +1,9 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
+/salesforce/src-dev-deploy/pages
+/salesforce/src-dev-deploy/staticresources
+/salesforce/*.sf
+
 # compiled output
 /dist
 /tmp
